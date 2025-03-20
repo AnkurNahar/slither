@@ -9,3 +9,5 @@ def allPrimesUpTo(num):
                 primes.append(number)
                 break
     return primes
+
+print(allPrimesUpTo(10))
