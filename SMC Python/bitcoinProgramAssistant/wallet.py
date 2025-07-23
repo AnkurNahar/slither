@@ -2,7 +2,7 @@ class Wallet:
 
     _crypto_currency = 'BTC'
 
-    def _init_(self, current_crypto_balance, current_cash_balance):
+    def __init__(self, current_crypto_balance, current_cash_balance):
         self._current_crypto_balance = current_crypto_balance
         self._current_cash_balance = current_cash_balance
     

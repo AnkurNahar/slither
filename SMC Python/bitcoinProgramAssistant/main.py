@@ -9,7 +9,7 @@ class Main:
         self.getLive = GetLive()
         self.date = Date()
         self.ledger = Ledger()
-        self.wallet = Wallet()
+        self.wallet = Wallet(0, 75000)
         print('1. Check price\n2. Buy Bitcoin\n3. Sell Bitcoin\n4. Check balance\n5. View history\n6. Exit')
         try:
             self.user_req = int(input('Enter any value from 1 to 6: '))
@@ -85,6 +85,7 @@ class Main:
         self.wallet.setWalletInfo(new_crypto, new_cash)
         str = f'Bought {new_bits} Bitcoin on {self.date.formatDate()}'
         self.ledger.addNewTransaction(str)
+        print(str)
 
 
     def sell(self):
@@ -105,9 +106,9 @@ class Main:
             print('input needs to be a numeric value')
 
         crypto, cash = self.wallet.getWalletInfo()
+        current_price = self.getLive.getBitcoinPrice()
     
         if is_cash:
-            current_price = self.getLive.getBitcoinPrice()
             amount = amount / current_price
 
         if amount > crypto:
@@ -120,6 +121,7 @@ class Main:
         self.wallet.setWalletInfo(new_crypto, new_cash)
         str = f'Sold {amount} Bitcoin on {self.date.formatDate()}'
         self.ledger.addNewTransaction(str)
+        print(str)
 
     
 if __name__ == "__main__":
