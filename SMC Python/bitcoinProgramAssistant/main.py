@@ -18,13 +18,11 @@ class Main:
             print('input needs to be a numeric value')
 
 
-
     def run(self):
 
         while self.user_req != 6:
             self.operations()
             self.takeUserInput()
-
 
 
     def takeUserInput(self):
@@ -33,7 +31,6 @@ class Main:
 
         except ValueError:
             print('input needs to be a numeric value')
-
 
 
     def operations(self):   
@@ -58,11 +55,71 @@ class Main:
             case _:
                 print('invalid input')
 
-    def buy():
-        pass
+    def buy(self):
+        try:
+            is_float = 0
+            amount = 0
+            buy_amount = input('Enter value : ')
+            if '.' in buy_amount:
+                amount = float(buy_amount)
+                is_float = 1
+            else:
+                amount = int(buy_amount)
 
-    def sell():
-        pass
+        except ValueError:
+            print('input needs to be a numeric value')
+
+        crypto, cash = self.wallet.getWalletInfo()
+    
+        if is_float:
+            current_price = self.getLive.getBitcoinPrice()
+            amount = amount * current_price
+
+        if amount > cash:
+            return print('insufficient funds')
+        
+        new_cash = cash - amount
+        new_bits = amount/current_price
+        new_crypto = crypto + new_bits
+
+        self.wallet.setWalletInfo(new_crypto, new_cash)
+        str = f'Bought {new_bits} Bitcoin on {self.date.formatDate()}'
+        self.ledger.addNewTransaction(str)
+
+
+    def sell(self):
+        
+        try:
+            is_cash = 0
+            amount = 0
+            bits = 0
+            sell_amount = input('Enter value : ')
+            if '.' in sell_amount:
+                amount = float(sell_amount)
+            else:
+                amount = int(sell_amount)
+                is_cash = 1
+
+
+        except ValueError:
+            print('input needs to be a numeric value')
+
+        crypto, cash = self.wallet.getWalletInfo()
+    
+        if is_cash:
+            current_price = self.getLive.getBitcoinPrice()
+            amount = amount / current_price
+
+        if amount > crypto:
+            return print('insufficient funds')
+        
+        new_crypto = crypto - amount
+        added_cash = amount * current_price
+        new_cash = cash + added_cash
+
+        self.wallet.setWalletInfo(new_crypto, new_cash)
+        str = f'Sold {amount} Bitcoin on {self.date.formatDate()}'
+        self.ledger.addNewTransaction(str)
 
     
 if __name__ == "__main__":
