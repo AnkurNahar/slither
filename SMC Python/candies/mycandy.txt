@@ -1,0 +1,7 @@
+Candy Name,Candy Calories,Total Fat Grams
+Snickers,250,12
+KitKat,200,11
+Twix,280,14
+Milky Way,240,10
+Reese's,210,13
+Hershey's,190,10
